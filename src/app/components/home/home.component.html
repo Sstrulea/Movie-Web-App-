@@ -1,0 +1,93 @@
+<div class="container" #target>
+  <app-search-bar (searchTextChanged)="onSearchText($event)"></app-search-bar>
+
+  <div class="sections">
+    <div class="category field">
+      <button class="button-field" (click)="filterGenre()">
+        <span class="text">Filter</span>
+      </button>
+      <div class="all-genre" *ngIf="!isCollapsed">
+        <div class="first-line">
+          <div class="list-selected-genres" *ngFor="let i of genredListed">
+            {{ i }}
+          </div>
+          <button class="button-field" (click)="resetField()">
+            Clean genre filter
+          </button>
+        </div>
+        <div *ngFor="let i of genre" class="filter-tag">
+          <div (click)="onGenreSearch(i.id, i.name)">{{ i.name }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="favourite field">
+      <button class="button-field" (click)="showFavourite()">
+        <span class="text">Show Favourite movies</span>
+      </button>
+    </div>
+    <div class="reset field">
+      <button class="button-field" (click)="resetField()">
+        <span class="text">Go back to the popular section</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="movie" *ngFor="let movie of movies">
+      <img
+        src="https://wpamelia.com/wp-content/uploads/2018/11/ezgif-2-6d0b072c3d3f.gif"
+        *ngIf="LoadingHandler.isLoading"
+        alt="loading"
+      />
+      <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" />
+      <div class="movie-info">
+        <div class="text-movie">
+          <div>{{ movie.title }}</div>
+          <span class="release">{{ movie.release_date }}</span>
+        </div>
+        <div>
+          <div *ngIf="test(movie); else elseBlock">
+            <button
+              class="favourite-button"
+              (click)="removeFromFavourite(movie)"
+            >
+              Remove from favourite
+            </button>
+          </div>
+          <ng-template #elseBlock>
+            <button class="favourite-button" (click)="addToFavourite(movie)">
+              Add to favourite
+            </button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!movies.length">
+      <h1>NO RESULTS</h1>
+    </div>
+  </div>
+  <div class="pagination">
+    <button
+      class="button-field page"
+      *ngIf="currentPage > 1; else elseBlock"
+      (click)="prevPageFc(target)"
+    >
+      Previous Page
+    </button>
+    <ng-template #elseBlock
+      ><button class="button-field disabled">Previous Page</button></ng-template
+    >
+    <div class="current-page">{{ currentPage }}</div>
+
+    <button
+      class="button-field page"
+      *ngIf="currentPage < totalPages; else elseBlock"
+      (click)="nextPageFc(target)"
+    >
+      Next Page
+    </button>
+    <ng-template #elseBlock
+      ><button class="button-field disabled">Next Page</button></ng-template
+    >
+  </div>
+</div>

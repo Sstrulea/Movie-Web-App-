@@ -1,0 +1,21 @@
+<div class="search-container">
+  <span>Search movies:</span>
+  <div class="search-field">
+    <input
+      type="text"
+      placeholder="Over 500,000 movies..."
+      [(ngModel)]="enteredSearchValue"
+      (input)="onSearchTextChanged()"
+      class="search-input"
+    />
+    <div class="search">
+      <button
+        (click)="handleClear()"
+        (click)="onSearchTextChanged()"
+        class="search-button"
+      >
+        Clear field
+      </button>
+    </div>
+  </div>
+</div>
