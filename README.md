@@ -1,5 +1,9 @@
 # MovieApp
 
+Searching Movie Web App using Angular and TMDB API
+
+Salut, proiectul a fost facut in Angular, am completat toate criteriile, chiar si cele optionale mai putin cea cu "movie grid that gets re-rendered for search results and reused for the favorites section" si loading data indicator ( am avut o incercare, am comentat-o in cod ). Mi a placut proiectul, a fost interesant si usor de abordat. Mai am de adaugat faptul ca am facut o greseala si am inceput cu design-ul pe o rezolutie mai larga si am lasat pe final rezolutia pe mobil.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
 
 ## Development server
